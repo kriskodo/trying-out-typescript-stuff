@@ -13,7 +13,7 @@ type CamelCase<S extends string> =
     ? `${Uppercase<First>}${RemoveSpaces<Rest>}`
     : '';
 
-type ValuesAsCamelCaseKeys<T extends Record<string, string>> {
+type KeysAsCamelCaseValues<T extends Record<string, string>> {
     [K in keyof T as CamelCase<T[K]>]: T[K]
 }
 
@@ -25,7 +25,7 @@ type ProffesionType = {
     multiplespaces: 'Multiple    Spaces'
 }
 
-const Profession: ValuesAsCamelCaseKeys<ProffesionType> = {
+const Profession: KeysAsCamelCaseValues<ProffesionType> = {
     Influencer: 'influencer',
     ProductManager: 'productManager',
     DataScientist: 'Data Scientist',
