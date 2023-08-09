@@ -10,7 +10,7 @@ type RemoveSpaces<S extends string> = S extends `${infer Left} ${infer Right}`
 
 type CamelCase<S extends string> =
     S extends `${infer First}${infer Rest}`
-    ? `${Uppercase<First>}${RemoveSpaces<Rest>}`
+    ? `${Uppercase<Lowercase<First>>}${RemoveSpaces<Rest>}`
     : '';
 
 type KeysAsCamelCaseValues<T extends Record<string, string>> {
@@ -25,6 +25,8 @@ type ProffesionType = {
     multiplespaces: 'Multiple    Spaces'
     something: 'more than two strings',
     uppercaseStrings: 'UPPERCASE STRINGS',
+    // TODO: handle this case
+    uppercaseString: 'UPPERCASE',
 }
 
 const Profession: KeysAsCamelCaseValues<ProffesionType> = {
@@ -34,7 +36,8 @@ const Profession: KeysAsCamelCaseValues<ProffesionType> = {
     SoftwareDeveloper: 'software developer',
     MultipleSpaces: 'Multiple    Spaces',
     MoreThanTwoStrings: 'more than two strings',
-    UppercaseStrings: "UPPERCASE STRINGS"
+    UppercaseStrings: "UPPERCASE STRINGS",
+    UPPERCASE: "UPPERCASE"
 }
 
 console.log(Profession.DataScientist); // Data Scientist
