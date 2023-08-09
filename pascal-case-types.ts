@@ -5,7 +5,7 @@
 
 
 type RemoveSpaces<S extends string> = S extends `${infer Left} ${infer Right}`
-    ? `${RemoveSpaces<`${Left}${CamelCase<Right>}`>}`
+    ? `${RemoveSpaces<`${Lowercase<Left>}${CamelCase<Lowercase<Right>>}`>}`
     : S;
 
 type CamelCase<S extends string> =
@@ -23,6 +23,8 @@ type ProffesionType = {
     dataScientist: 'Data Scientist',
     softwareDeveloper: 'software developer',
     multiplespaces: 'Multiple    Spaces'
+    something: 'more than two strings',
+    uppercaseStrings: 'UPPERCASE STRINGS',
 }
 
 const Profession: KeysAsCamelCaseValues<ProffesionType> = {
@@ -30,7 +32,9 @@ const Profession: KeysAsCamelCaseValues<ProffesionType> = {
     ProductManager: 'productManager',
     DataScientist: 'Data Scientist',
     SoftwareDeveloper: 'software developer',
-    MultipleSpaces: 'Multiple    Spaces'
+    MultipleSpaces: 'Multiple    Spaces',
+    MoreThanTwoStrings: 'more than two strings',
+    UppercaseStrings: "UPPERCASE STRINGS"
 }
 
 console.log(Profession.DataScientist); // Data Scientist
