@@ -14,11 +14,11 @@ type CamelCase<S extends string> =
     ? `${Uppercase<First>}${WithoutSpaces<Rest>}`
     : '';
 
-type KeysAsCamelCaseValues<T extends Record<string, string>> = {
+type KeysAsCamelCaseValues<T extends Readonly<Record<string, string>>> = {
     -readonly [K in keyof T as CamelCase<T[K]>]: T[K]
 }
 
-const convertToCamelCase = <T extends Record<string, string>>(object: T): KeysAsCamelCaseValues<T> => {
+const convertToCamelCase = <T extends Record<string, string>>(object: Readonly<T>): KeysAsCamelCaseValues<T> => {
     return object as unknown as KeysAsCamelCaseValues<T>;
 };
 
@@ -31,6 +31,6 @@ const Profession = convertToCamelCase({
     MoreThanTwoStrings: 'more than two strings',
     UppercaseStrings: "UPPERCASE STRINGS",
     UPPERCASE: "UPPERCASE",
-} as const);
+});
 
-Profession.Uppercase = "UPPERCASE";
+Profession.DataScientist = "Data Scientist";
