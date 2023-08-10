@@ -33,4 +33,4 @@ const Profession = convertToCamelCase({
     UPPERCASE: "UPPERCASE",
 } as const);
 
-Profession.
+Profession.Uppercase = "UPPERCASE";
