@@ -14,7 +14,7 @@ type CamelCase<S extends string> =
     ? `${Uppercase<First>}${WithoutSpaces<Rest>}`
     : '';
 
-type KeysAsCamelCaseValues<T extends Record<string, string>> {
+type KeysAsCamelCaseValues<T extends Record<string, string>> = {
     -readonly [K in keyof T as CamelCase<T[K]>]: T[K]
 }
 
